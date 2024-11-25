@@ -52,15 +52,15 @@ function Signin() {
         <Grid item xs={6} sx={{paddingLeft:"80px",paddingTop:"15px"}}>
             <ToastContainer autoClose={2000} position='top-right'/>
            <img style={{width:"130px"}} src={linkedin}/>
-            <h2 style={{fontWeight:"100",fontSize:"60px",color:"#B26F28"}}>Find jobs through this clone</h2>
-            <label style={{color:"grey",fontSize:"10px"}}>Enter username</label>
+            <h2 style={{fontWeight:"100",fontSize:"60px",color:"#B26F28"}}>Find Jobs or Employees in your area</h2>
+            <label style={{color:"grey",fontSize:"15px"}}>Enter username</label>
             <br/>
             <TextField onChange={(e)=> setUsername(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}  variant='outlined' label="Username" sx={{width:"400px",mt:"5px"}}/>
             <br/>
-            <label style={{color:"grey",fontSize:"10px"}}>Enter Designation</label>
+            <label style={{color:"grey",fontSize:"15px"}}>Enter Designation(Employee/Employer)</label>
             <br/>
             <TextField onChange={(e)=> setDesignation(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))}  variant='outlined' label="Designation" sx={{width:"400px",mt:"5px"}}/>
-            <Button onClick={signInwithGoogle} size='large' variant='contained' sx={{width:"400px",borderRadius:"50px",mt:"25px",height:"50px"}}>Signin</Button>
+            <Button onClick={signInwithGoogle} size='large' variant='contained' sx={{width:"400px",borderRadius:"50px",mt:"25px",height:"50px"}}>Signup or Signin</Button>
         </Grid>
         <Grid item xs={6}>
            <img style={{width:"500px"}} src={developer}/>
