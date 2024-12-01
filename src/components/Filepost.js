@@ -89,14 +89,14 @@ function Filepost(props, ref) {
                 contentLabel="Example Modal"
             >
               <Button onClick={()=>  fileRef.current.click()} sx={{borderRadius:"30px"}} variant='contained'>Upload from computer</Button>
-              <h3 style={{fontWeight:"500"}}>Select files here</h3>
-              <h6>Share your images or videos</h6>
+              <h2 style={{fontWeight:"500"}}>Select files here</h2>
+              <h3>Share your location or working site's photo</h3>
               <input onChange={(e)=> setFile(URL.createObjectURL(e.target.files[0]))} style={{display:"none"}} type='file' accept='image/*,video/*' ref={fileRef}/>
                 <h2 ref={(_subtitle) => (subtitle = _subtitle)}></h2>
                 <img style={{width:"500px"}} src={file}/>
                 <br/>
                 <Button sx={{ mt: "10px" }} variant='outlined' size='small' onClick={closeModal}>Cancel</Button>
-                <Button sx={{ ml: "10px", mt: "10px" }} variant='contained' size='small' onClick={addPost}>Done</Button>
+                <Button sx={{ ml: "10px", mt: "10px" }} variant='contained' size='small' onClick={addPost}>Post</Button>
             </Modal>
         </div>
     );

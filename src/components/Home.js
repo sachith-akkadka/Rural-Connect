@@ -3,11 +3,11 @@ import Sidebar from './Sidebar'
 import Middle from './Middle'
 import { Grid } from '@mui/material'
 import RightBar from './RightBar'
-
+import background from '../images/grass-bg.jpg'
 
 function Home({userData}) {
     return (
-        <div style={{backgroundColor:"#F6F7F3",height:"100%",padding:"20px"}}>
+        <div style={{backgroundImage: `url(${background})`,height:"100%",padding:"20px"}}>
             <Grid container spacing={4}>
                 <Grid item xs={3}>
                     <Sidebar userData={userData}/>
@@ -19,6 +19,18 @@ function Home({userData}) {
                     <RightBar/>
                 </Grid>
             </Grid>
+            <footer
+  style={{
+    backgroundColor: "transparent",
+    color: "Black",
+    textAlign: "center",
+    padding: "5px",
+    fontSize: "18px"
+  }}
+>
+  <p><b>© 2024 Rural Connect. All rights reserved.</b></p>
+</footer>
+
         </div>
     )
 }

@@ -1,0 +1,64 @@
+.about-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #fff; /* Using the darker theme color for text */
+    background-color: #222; /* Darker background for consistency */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px; /* Combined both styles */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+h1, h2 {
+    color: #007bff; /* Consistent heading color */
+    margin-bottom: 10px;
+}
+
+.contact-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444; /* Consistent border color */
+}
+
+.contact-section h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.social-icons a {
+    font-size: 25px;
+    margin-right: 15px;
+    color: #ababab;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+}

@@ -6,6 +6,8 @@ import Connection from './components/Connection'
 import Invitation from './components/Invitation'
 import Network from './components/Network'
 import Message from './components/Message'
+import About from './components/About';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/invite" element={<Invitation/>}/>
         <Route path="/network" element={<Network/>}/>
         <Route path='/message' element={<Message/>}/>
+        <Route path="/about" element={<About />} />
       </Routes>
     </div>
   )

@@ -1,21 +1,20 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-import {getAuth,GoogleAuthProvider} from "firebase/auth"
-import { getFirestore } from "firebase/firestore"
-// Your web app's Firebase configuration
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage"; // Import Firebase Storage
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAHKIEukunQiyn9z1z8ohwcAyaClVbPUZY",
-  authDomain: "rural-connect-f1404.firebaseapp.com",
-  projectId: "rural-connect-f1404",
-  storageBucket: "rural-connect-f1404.firebasestorage.app",
-  messagingSenderId: "28587287121",
-  appId: "1:28587287121:web:b22892b403db641ea18e70"
+  apiKey: "AIzaSyBLSmaRggkfODmei2e8ZgZAoJylgre7rPI",
+  authDomain: "rc-2-e0968.firebaseapp.com",
+  projectId: "rc-2-e0968",
+  storageBucket: "rc-2-e0968.appspot.com",
+  messagingSenderId: "514808568951",
+  appId: "1:514808568951:web:1e2b5e89354b05d0bbba72",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app)
-export const googleProvider = new GoogleAuthProvider(app)
-export const database = getFirestore(app)
+
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
+export const database = getFirestore(app);
+export const storage = getStorage(app); // Add and export Storage

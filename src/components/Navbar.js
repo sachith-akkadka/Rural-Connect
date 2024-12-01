@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
-import { Grid, TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
-import linked from "../images/linked.png";
-import lens from "../images/lens.png";
-import home from "../images/home.png";
-import message from "../images/message.png";
-import network from "../images/network.png";
-import profile from "../images/profile.png";
+import './about.css';
+import {
+  Grid,
+  TextField,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from '@mui/material';
+import linked from '../images/linked.png';
+import home from '../images/home.png';
+import message from '../images/message.png';
+import network from '../images/network.png';
+import aboutIcon from '../images/about.png';
+import profile from '../images/profile.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
@@ -16,12 +25,17 @@ function Navbar({ userData }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [userDetails, setUserDetails] = useState({
-    profileImage: userData._document?.data?.value.mapValue.fields.profile_image.stringValue ?? profile,
-    username: userData._document?.data?.value.mapValue.fields.username.stringValue ?? '',
-    designation: userData._document?.data?.value.mapValue.fields.designation?.stringValue ?? '',
-    phone: userData._document?.data?.value.mapValue.fields.phone?.stringValue ?? '',
-    skills: userData._document?.data?.value.mapValue.fields.skills?.stringValue ?? '',
-    address: userData._document?.data?.value.mapValue.fields.address?.stringValue ?? '',
+    username:
+      userData._document?.data?.value.mapValue.fields.username.stringValue ?? '',
+    designation:
+      userData._document?.data?.value.mapValue.fields.designation?.stringValue ??
+      '',
+    phone:
+      userData._document?.data?.value.mapValue.fields.phone?.stringValue ?? '',
+    skills:
+      userData._document?.data?.value.mapValue.fields.skills?.stringValue ?? '',
+    address:
+      userData._document?.data?.value.mapValue.fields.address?.stringValue ?? '',
   });
 
   const handleLogout = async () => {
@@ -40,57 +54,101 @@ function Navbar({ userData }) {
 
   const handleProfileUpdate = async () => {
     try {
-      const userId = auth.currentUser?.uid; // Use UID of the logged-in user
-      const userDocRef = doc(database, "Users", userId); // Reference to Firestore document
+      const userId = auth.currentUser?.uid;
+      const userDocRef = doc(database, 'Users', userId);
 
-      // Update the fields only if new values are provided
       const updatedData = {
-        profile_image: userDetails.profileImage || userData._document?.data?.value.mapValue.fields.profile_image.stringValue,
-        username: userDetails.username || userData._document?.data?.value.mapValue.fields.username.stringValue,
-        designation: userDetails.designation || userData._document?.data?.value.mapValue.fields.designation.stringValue,
-        phone: userDetails.phone || userData._document?.data?.value.mapValue.fields.phone.stringValue,
-        skills: userDetails.skills || userData._document?.data?.value.mapValue.fields.skills.stringValue,
-        address: userDetails.address || userData._document?.data?.value.mapValue.fields.address.stringValue,
+        username:
+          userDetails.username ||
+          userData._document?.data?.value.mapValue.fields.username.stringValue,
+        designation:
+          userDetails.designation ||
+          userData._document?.data?.value.mapValue.fields.designation?.stringValue,
+        phone:
+          userDetails.phone ||
+          userData._document?.data?.value.mapValue.fields.phone?.stringValue,
+        skills:
+          userDetails.skills ||
+          userData._document?.data?.value.mapValue.fields.skills?.stringValue,
+        address:
+          userDetails.address ||
+          userData._document?.data?.value.mapValue.fields.address?.stringValue,
       };
 
       await updateDoc(userDocRef, updatedData);
 
       console.log('Profile updated successfully!');
-      setIsPopupOpen(false); // Close the modal after saving
+      setIsPopupOpen(false);
     } catch (err) {
       console.error('Error updating profile:', err);
     }
   };
 
   return (
-    <div style={{ padding: '10px', borderBottom: '1px solid #D6D6D6' }}>
-      <Grid container>
-        <Grid item xs={5}>
-          <img style={{ width: '35px', marginLeft: '80px' }} src={linked} alt="Logo" />
-        </Grid>
-        <Grid item xs={6}>
-          <Link to="/main">
-            <img style={{ width: '35px', marginLeft: '20px' }} src={home} alt="Home" />
-          </Link>
-          <Link to="/network">
-            <img style={{ width: '35px', marginLeft: '50px' }} src={network} alt="Network" />
-          </Link>
-          <Link to="/message">
-            <img style={{ width: '35px', marginLeft: '50px' }} src={message} alt="Messages" />
-          </Link>
+    <div style={{ padding: '10px', borderBottom: '1px solid #D6D6D6', justifyContent:"flex-end", className:"nav-icons"}}>
+      <Grid container alignItems="center" justifyContent="space-between">
+        <Grid item xs={1}>
+        <Link to="/main">
           <img
-            style={{ width: '35px', marginLeft: '50px', borderRadius: '40px', cursor: 'pointer' }}
-            src={userDetails.profileImage}
-            alt="Profile"
-            onClick={() => setIsPopupOpen(true)}
+            style={{ width: '35px', marginLeft: '80px' }}
+            src={linked}
+            alt="Logo"
           />
+        </Link>
+        </Grid>
+        <Grid item xs={9} container>
+  <div style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}>
+    <div style={{ textAlign: 'center', margin: '0 10px' }}>
+            <Link to="/main">
+              <img style={{ width: '35px' }} src={home} alt="Home" />
+            </Link>
+            <div>Home</div>
+          </div>
+          <div style={{ textAlign: 'center', margin: '0 10px' }}>
+            <Link
+              to="/connect"
+              state={{username:userData._document?.data?.value.mapValue.fields.username.stringValue,
+                designation:userData._document?.data?.value.mapValue.fields.designation.stringValue,
+                profile_img:userData._document?.data?.value.mapValue.fields.profile_image.stringValue}} 
+            >
+              <img
+                style={{ width: '35px'}}
+                src={network}
+                alt="Network"
+              />
+            </Link>
+            <div>Network</div>
+          </div>
+          <div style={{ textAlign: 'center', margin: '0 10px' }}>
+            <Link to="/network" state={{currentUserProImg:userData._document?.data?.value.mapValue.fields.profile_image.stringValue,
+             currentUserName:userData._document?.data?.value.mapValue.fields.username.stringValue}}>
+              <img style={{ width: '35px' }} src={message} alt="Messages" />
+            </Link>
+            <div>Messages</div>
+          </div>
+          <div style={{ textAlign: 'center', margin: '0 10px' }}>
+            <Link to="/about">
+              <img style={{ width: '35px' }} src={aboutIcon} alt="About Us" />
+            </Link>
+            <div>About Us</div>
+          </div>
+          <div style={{ textAlign: 'center', margin: '0 10px' }}>
+            <img
+              style={{ width: '35px', cursor: 'pointer' }}
+              src={profile}
+              alt="Profile"
+              onClick={() => setIsPopupOpen(true)}
+            />
+            <div>Profile</div>
+          </div>
+        </div>
         </Grid>
         <Grid item xs={1}>
           <button
             onClick={handleLogout}
             style={{
-              background: 'linear-gradient(90deg, #ff8a00, #e52e71)',
-              color: 'white',
+              background: 'transparent',
+              color: 'Black',
               border: 'none',
               borderRadius: '25px',
               padding: '8px 20px',
@@ -98,8 +156,9 @@ function Navbar({ userData }) {
               fontWeight: 'bold',
               textTransform: 'uppercase',
               cursor: 'pointer',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
-              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+              transition: 'all 0.2s ease',
+              justifyContent: 'flex-end',
             }}
           >
             Logout
@@ -107,29 +166,15 @@ function Navbar({ userData }) {
         </Grid>
       </Grid>
 
-      {/* Profile Edit Popup */}
-      <Dialog open={isPopupOpen} onClose={() => setIsPopupOpen(false)} maxWidth="lg" fullWidth>
+      <Dialog
+        open={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        maxWidth="sm"
+        fullWidth
+      >
         <DialogTitle>Edit Profile</DialogTitle>
-        <DialogContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-            <Button variant="contained" component="label">
-              Upload Profile Image
-              <input
-                type="file"
-                accept="image/*"
-                hidden
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                      setUserDetails((prev) => ({ ...prev, profileImage: reader.result }));
-                    };
-                    reader.readAsDataURL(file);
-                  }
-                }}
-              />
-            </Button>
+        <DialogContent style={{ padding: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <TextField
               label="Username"
               name="username"
